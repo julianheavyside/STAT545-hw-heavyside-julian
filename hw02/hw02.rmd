@@ -1,1 +1,107 @@
+---
+title: "Homework 2"
+date: '2017-09-26'
+output: 
+    html_document:
+        toc: true
+---
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))  # The tidyverse contains ggplot2!
+suppressPackageStartupMessages(library(gapminder))
+knitr::opts_chunk$set(fig.width=4, fig.height=3)
+```
+
+## Smell test the data
+
+```{r}
+str(gapminder)
+```
+
+The `gapminder` object is a dataframe. Its class is 'tbl_df'
+
+There are 6 variables
+
+There are 1704 observations
+
+You can use the following functions to figure out what's in the `gapminder` dataset
+
+```{r}
+summary(gapminder)
+
+typeof(gapminder)
+
+class(gapminder)
+
+str(gapminder)
+```
+
+Running `str(gapminder)` will return the type of each variable, as well as some other useful info
+
+## Explore individual variables
+
+Categorical var = `country`
+Quantitative var = `gdpPercap`
+
+Range in `gdpPercap`
+```{r}
+range(gapminder$gdpPercap)
+```
+Possible values for `country`
+
+```{r}
+unique(gapminder$country)
+```
+
+maximum gdp per capita for each country
+```{r}
+gapminder %>% 
+  group_by(country) %>% 
+  summarise(mingdppercap = max(gdpPercap))
+```
+
+change in gdp per capita over time, for all countries
+
+```{r}
+gapminder %>% 
+  ggplot(aes(year, gdpPercap)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+## Explore various plot types
+
+gdp per capita across years, for each continent
+
+```{r}
+gapminder %>% 
+  ggplot(aes(year, gdpPercap,
+             colour = continent)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+looking just at Asia
+
+```{r}
+gapminder %>% 
+  filter(continent == "Asia") %>% 
+  ggplot(aes(year, gdpPercap,
+             colour = country)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+Evaluate the code below
+
+```{r}
+filter(gapminder, country == c("Rwanda", "Afghanistan"))
+
+```
+
+Better to do it this way
+```{r}
+filter(gapminder, country == "Rwanda" | country == "Afghanistan")
+```
+
 
