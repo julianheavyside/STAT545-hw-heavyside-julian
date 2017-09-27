@@ -1,6 +1,0 @@
----
-title: "hw02"
-author: "Julian Heavyside"
-date: "September 26, 2017"
-output: github_document
----
