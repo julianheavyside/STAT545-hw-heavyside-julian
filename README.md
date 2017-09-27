@@ -1,1 +1,2 @@
-# STAT545-hw-heavyside-julian
+# STAT545 Homework
+
