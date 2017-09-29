@@ -1,0 +1,6 @@
+---
+title: "hw03"
+author: "Julian Heavyside"
+date: "9/29/2017"
+output: github_document
+---
