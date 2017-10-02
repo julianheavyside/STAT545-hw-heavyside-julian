@@ -1,7 +1,9 @@
-# STAT545 Homework
+# STAT 545 Homework
 
-This repo contains my homework assignments for each week
+This repo contains my homework assignments for each week. See below for a direct link to each homework assignment
 
-Find all Homework 2 files [here](https://github.com/julianheavyside/STAT545-hw-heavyside-julian/tree/master/hw02), or go directly [here](https://github.com/julianheavyside/STAT545-hw-heavyside-julian/blob/master/hw02/hw02.md) to view the markdown file
+## Homework 2
+Go directly to my [Homework 2 `README`](hw02/README.md)
 
-
+## Homework 3
+Go directly to my [Homework 3 `README`](hw03/README.md)
