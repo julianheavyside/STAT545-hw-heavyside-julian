@@ -1,5 +1,5 @@
 ---
-title: "hw03"
+title: "hw03: Using dplyr and ggplot2 to manipulate and explore the gapminder dataset"
 author: "Julian Heavyside"
 date: "9/29/2017"
 output: github_document
