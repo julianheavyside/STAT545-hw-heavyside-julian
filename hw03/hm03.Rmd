@@ -5,24 +5,49 @@ date: "9/29/2017"
 output: github_document
 ---
 
+## Homework 3: Using dplyr and ggplot2 to manipulate and explore the gapminder dataset
+
+Load relevant libraries
+
 ```{r}
-suppressPackageStartupMessages(library(tidyverse))  # The tidyverse contains ggplot2!
+suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(gapminder))
 knitr::opts_chunk$set(fig.width=4, fig.height=3)
 ```
 
-## Homework 3: Using dplyr and ggplot2 to manipulate and explore the gapminder dataset
-
 # Homework Tasks
 
-__Task 1__: Get the maximum and minimum of GDP per capita for all continents. I also want to know which country is the lowest for each continent
+__Task 1__: Get the maximum and minimum of GDP per capita for all continents.
+ 
+*First, a simple table to show the minimum and maximum GDP per capita for each continent, with data from all years lumped together. I've also included the GDP gap between max and min*
 
 ```{r}
-gapminder %>% 
+fig1_table <- gapminder %>% 
   group_by(continent) %>% 
-  summarise(minGDP = min(gdpPercap), maxGDP = max(gdpPercap)) %>% 
-  knitr::kable() # makes the table look prettier
+  summarise(min_GDP = min(gdpPercap), 
+            max_GDP = max(gdpPercap), 
+            gap = max(gdpPercap) - min(gdpPercap))
+  
+knitr::kable(fig1_table) # makes the table look prettier
 ```
+
+*But let's see how this has changed over the years for each continent. Has the gap grown or shrunk at all? (group by continent and year this time, then plot it*
+
+```{r}
+gapminder %>%
+  group_by(continent, year) %>% 
+  summarise(min_GDP = min(gdpPercap), 
+            max_GDP = max(gdpPercap)) %>% 
+  ggplot(aes(year)) +
+  geom_line(aes(y = min_GDP, colour = "min_GDP")) +
+  geom_line(aes(y = max_GDP, colour = "max_GDP")) +
+  facet_grid(~ continent) +
+  # figured out that theme() can change things
+  # this turns the years on the x axis sideways
+  theme(axis.text.x = element_text(size = 7, angle = 90))
+
+```
+
 
 __Task 2__: Look at the spread of GDP per capita within the continents.
 
