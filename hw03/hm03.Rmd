@@ -21,13 +21,28 @@ __Task 1__: Get the maximum and minimum of GDP per capita for all continents. I 
 gapminder %>% 
   group_by(continent) %>% 
   summarise(minGDP = min(gdpPercap), maxGDP = max(gdpPercap)) %>% 
-  knitr::kable() # make the table look prettier
+  knitr::kable() # makes the table look prettier
 ```
 
 __Task 2__: Look at the spread of GDP per capita within the continents.
 
 ```{r}
+gapminder %>%
+  group_by(continent) %>% 
+  ggplot(aes(year, gdpPercap)) +
+  geom_point(aes(colour = continent)) +
+  geom_smooth(aes(colour = continent), method = "lm", se = F)
+```
 
+Find out which country/countries show declining GDP per capita
+
+```{r}
+# gapminder %>% 
+#   group_by(continent)
+#   lm(gdpPercap ~ year, .) %>% 
+#   
+  
+  
 ```
 
 __Task 3__: Compute a trimmed mean of life expectancy for different years. Or a weighted mean, weighting by population. Just try something other than the plain vanilla mean.
@@ -39,7 +54,11 @@ __Task 3__: Compute a trimmed mean of life expectancy for different years. Or a 
 __Task 4__: How is life expectancy changing over time on different continents?
 
 ```{r}
-
+gapminder %>%
+  group_by(continent) %>% 
+  ggplot(aes(year, lifeExp)) +
+  geom_point(aes(colour = continent)) +
+  geom_smooth(aes(colour = continent), method = "lm", se = F)
 ```
 
 
