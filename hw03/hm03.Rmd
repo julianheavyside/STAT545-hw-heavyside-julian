@@ -5,8 +5,6 @@ date: "9/29/2017"
 output: github_document
 ---
 
-## Homework 3: Using dplyr and ggplot2 to manipulate and explore the gapminder dataset
-
 Load relevant libraries
 
 ```{r}
@@ -22,13 +20,12 @@ __Task 1__: Get the maximum and minimum of GDP per capita for all continents.
 *First, a simple table to show the minimum and maximum GDP per capita for each continent, with data from all years lumped together. I've also included the GDP gap between max and min*
 
 ```{r}
-fig1_table <- gapminder %>% 
+gapminder %>% 
   group_by(continent) %>% 
   summarise(min_GDP = min(gdpPercap), 
             max_GDP = max(gdpPercap), 
-            gap = max(gdpPercap) - min(gdpPercap))
-  
-knitr::kable(fig1_table) # makes the table look prettier
+            gap = max(gdpPercap) - min(gdpPercap)) %>% 
+  knitr::kable() # makes the table look prettier
 ```
 
 *But let's see how this has changed over the years for each continent. Has the gap grown or shrunk at all? (group by continent and year this time, then plot it*
