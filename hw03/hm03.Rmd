@@ -12,7 +12,7 @@ Load relevant libraries
 ```{r}
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(gapminder))
-knitr::opts_chunk$set(fig.width=4, fig.height=3)
+knitr::opts_chunk$set(fig.width=6, fig.height=3)
 ```
 
 # Homework Tasks
