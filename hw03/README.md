@@ -1,6 +1,6 @@
 # This folder contains all the files for Homework 3
 
-For this assignement, I used dplyr and ggplot2 to manipulate and explore the gapminder dataset
+For this assignment, I used dplyr and ggplot2 to manipulate and explore the gapminder dataset
 
 Click [here](hm03.md) to go directly to the `md` file if you want to see beautifully rendered figures and code immediately.
 
