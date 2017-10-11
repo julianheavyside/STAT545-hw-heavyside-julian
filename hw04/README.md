@@ -1,8 +1,10 @@
 # This folder contains all the files for Homework 4
 
-Click [here](hw04.md) to go directly to the `md` file if you want to see beautifully rendered figures and code immediately.
+[hw04 md](hw04.md)
 
-Or, click [here](hw04.Rmd) to go directly to the corresponding `Rmd` file if that's what you're into.
+[hm04 Rmd](hw04.Rmd)
+
+[Assignment details](http://stat545.com/hw04_tidy-data-joins.html)
 
 
 ## Reflections on the assignment
