@@ -1,0 +1,8 @@
+---
+title: "HW 04: Tidy Data and Joins"
+author: "Julian Heavyside"
+date: "10/10/2017"
+output: 
+  github_document:
+    toc: true
+---
