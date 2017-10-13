@@ -82,4 +82,28 @@ In both graphs we can see a blip in the LE for Sierra Leone around 1992. Civil w
 
 
 
-### Part 2 Join, merge, look up
+### Part 2 Join, merge, look up (Activity 1)
+
+First, I'll create a (small) dataset with one language and a popular food for speakers of that language, for a small selection of countries
+
+```{r}
+
+eatspeak<- data.frame(country = c("Canada", "Peru", "Italy", "France", "Norway", "Papua New Guinea", "New Zealand", "Afganistan"),
+                  language = c("Heiltsuk", "Quechua", "Neapolitan", "Provencal", "Sami", "Hiri Motu", "Maori", "Isken"),
+                  food = c("Eulachon", "Chuño", "Pane cafone", "Truffle", "Cloudberry", "Kaukau", "Taewa tutaekuri", "Bolani"))
+
+eatspeak
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
