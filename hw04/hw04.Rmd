@@ -88,7 +88,7 @@ First, I'll create a (small) dataset with one language and a popular food for sp
 
 ```{r}
 
-eatspeak<- data.frame(country = c("Canada", "Peru", "Italy", "France", "Norway", "Papua New Guinea", "New Zealand", "Afganistan"),
+eatspeak<- data.frame(country = c("Canada", "Peru", "Italy", "France", "Norway", "Papua New Guinea", "New Zealand", "Afghanistan"),
                   language = c("Heiltsuk", "Quechua", "Neapolitan", "Provencal", "Sami", "Hiri Motu", "Maori", "Isken"),
                   food = c("Eulachon", "Chuño", "Pane cafone", "Truffle", "Cloudberry", "Kaukau", "Taewa tutaekuri", "Bolani"))
 
@@ -96,9 +96,21 @@ eatspeak
 
 ```
 
+#`left_join`
+
+Now I'll join some gapminder data to these countries. The result includes all the data from the 12 years, plus the two columns from `eatspeak`, for only the countries in `eatspeak` (filter out only one year to make the table nice and short)
 
 
+```{r}
+left_join(eatspeak, gapminder) %>% 
+  filter(year == 2002)
+  knitr::kable()
 
+```
+
+`gapminder` does not contain any data for Papua New Guinea, and the resulting table 
+
+#`inner_join`
 
 
 
