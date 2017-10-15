@@ -1,5 +1,7 @@
 
-### My name is Julian Heavyside, and I'm a grad student in the Zoology Department here at UBC. I'm taking STAT 545 to learn how to do fancy things with data. Here are my assignments
+### My name is Julian Heavyside, and I'm a grad student in the Zoology Department here at UBC. 
+
+**I'm taking STAT 545 to learn how to do fancy things with data. Here are my assignments**
 
 **STAT 545 Homework**
 
