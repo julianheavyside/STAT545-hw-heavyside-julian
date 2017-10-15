@@ -105,14 +105,14 @@ Now I'll join some gapminder data to these countries. The result includes all th
 
 ```{r}
 left_join(eatspeak, gapminder) %>% 
-  filter(year == 2002) %>% 
+  filter(year == 2002 | "NA") %>% 
   knitr::kable()
 
 ```
 
-`gapminder` does not contain any data for Papua New Guinea, and the resulting table 
+`gapminder` does not contain any data for Papua New Guinea, and it is missing in the resulting table. `left_join` 
 
-#`inner_join`
+###`inner_join`
 
 
 
