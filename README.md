@@ -1,11 +1,7 @@
 
 ### My name is Julian Heavyside, and I'm a grad student in the Zoology Department here at UBC. 
 
-**I'm taking STAT 545 to learn how to do fancy things with data. Here are my assignments**
-
-**STAT 545 Homework**
-
-This repo contains my homework assignments for each week. See below for a direct link to each homework assignment
+**I'm taking STAT 545 to learn how to do fancy things with data.** Here are my assignments for each week of the course. Click the links for go directly to the `markdown` version of my analysis.
 
 ## Homework 2
 Go directly to my [Homework 2 `README`](hw02/README.md)
@@ -18,7 +14,6 @@ Go directly to my [Homework 4 `README`](hw04/README.md)
 
 ## Homework 5
 Go directly to my [Homework 5 `README`](hw05/README.md)
-
 
 See my other work by clicking [here](https://github.com/julianheavyside?tab=repositories)
 
