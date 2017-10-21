@@ -91,7 +91,6 @@ trimmed %>%
 __Task 4__: How is life expectancy changing over time on different continents?
 
 ```{r}
-
 gapminder %>% 
   group_by(continent, year) %>% 
   summarise(life_exp = mean(lifeExp)) %>% 
@@ -100,7 +99,6 @@ gapminder %>%
   facet_grid(~ continent) +
   labs(x = "Year", y = "Mean life expectancy (years)") + 
   theme(axis.text.x = element_text(size = 7, angle = 90))
-
 ```
 
 *Life expectancy seems to be on the rise across all continents, when lumping all countries together.*
