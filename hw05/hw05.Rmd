@@ -14,6 +14,7 @@ suppressPackageStartupMessages(library(gapminder))
 suppressPackageStartupMessages(library(singer))
 suppressPackageStartupMessages(library(forcats))
 suppressPackageStartupMessages(library(gridExtra))
+suppressPackageStartupMessages(library(viridis))
 knitr::opts_chunk$set(fig.width=10, fig.height=6)
 ```
 
@@ -60,7 +61,7 @@ Focussing on the continent of Africa, we'll order the countries by life expectan
 ```{r}
 only_africa <- drop_oceania %>% 
   filter(continent == "Africa") %>% 
-  select(continent, country, year, lifeExp, gdpPercap) %>%
+  select(continent, country, year, lifeExp, gdpPercap, pop) %>%
   group_by(country) %>%
   droplevels()
 ```
@@ -140,7 +141,7 @@ Now let's move over to working with the `singer` dataset (this was loaded in at 
 glimpse(singer_locations)
 ```
 
-Right away we notice the types of each variable (character, integer, double) are going to cause problems. We want factors!
+Right away we notice the types of each variable (character, integer, double) are going to cause problems. We want factors! We'll use `forcats` factoring magic to do this.
 
 ```{r}
 singer_factored <- singer_locations %>% 
@@ -152,13 +153,77 @@ singer_factored <- singer_locations %>%
 glimpse(singer_factored)
 ```
 
-
-
-Visualization design
+Now we are ready to summarise and arrange the data (let's get the average song length for each artist, then order it shortest to longest!), save it, and see how it loads back in using various methods
 
 ```{r}
+song_length <- singer_factored %>% 
+  group_by(artist_name) %>% 
+  summarise(avg_duration = mean(duration)) %>% 
+  arrange(avg_duration)
 
+head(song_length)
 ```
+
+
+Method 1: `write.csv()`
+```{r}
+# save the summary as a csv, using the `base` method of `write.csv()`
+write.csv(song_length, "song_length1.csv")
+
+song_length1 <- read.csv("song_length1.csv")
+
+head(song_length1)
+```
+
+This seems good to me! I was expecting the order to return to that of the orginal dataset. I will come back to this if I have time (maybe something to do with `arrange()`)
+
+Method 2: `write_csv()`
+```{r}
+write_csv(song_length, "song_length2.csv")
+
+song_length2 <- read.csv("song_length2.csv")
+
+head(song_length2)
+```
+
+This seems good to me too! 
+
+
+### Visualization design
+**Remake at least one figure or create a new one, in light of something you learned in the recent class meetings about visualization design and color. Maybe juxtapose your first attempt and what you obtained after some time spent working on it. Reflect on the differences.**
+
+Here's the plot from earlier in this assignement
+
+```{r}
+africa_fct
+```
+
+Let's select just a handful of countries (Sierra Leone, Mali, Chad, Togo, and Libya), and add size and colour aesthetics to the points. We can add a colour aes to indicate per capita gdp, and a size to indicate population size
+
+We'll build up from the original code used to generate the plot.
+
+```{r}
+only_africa %>%
+  filter(country == "Angola" | 
+           country == "Mali" | 
+           country == "Chad" | 
+           country ==  "Senegal" | 
+           country == "Libya") %>%
+  summarise(avgLE = mean(lifeExp),
+            avgGDP = mean(gdpPercap),
+            avgPOP = mean(pop)) %>% 
+  mutate(country = fct_reorder(country, avgLE)) %>% 
+  ggplot(aes(x = country, y = avgLE)) +
+  geom_point(aes(size = avgGDP, colour = avgPOP)) +
+  scale_color_continuous() +
+  ggtitle("Mean life expectancy for African countries") +
+  xlab("") +
+  ylab("Mean life expectancy in years") +
+  theme(axis.text.x = element_text(angle = 90),
+          axis.text = element_text(size = 10))
+```
+
+
 
 Writing figures to file
 
