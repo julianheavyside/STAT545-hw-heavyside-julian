@@ -14,7 +14,7 @@ suppressPackageStartupMessages(library(gapminder))
 suppressPackageStartupMessages(library(singer))
 suppressPackageStartupMessages(library(forcats))
 suppressPackageStartupMessages(library(gridExtra))
-suppressPackageStartupMessages(library(viridis))
+suppressPackageStartupMessages(library(RColorBrewer))
 knitr::opts_chunk$set(fig.width=10, fig.height=6)
 ```
 
@@ -198,48 +198,42 @@ Here's the plot from earlier in this assignement
 africa_fct
 ```
 
-Let's select just a handful of countries (Sierra Leone, Mali, Chad, Togo, and Libya), and add size and colour aesthetics to the points. We can add a colour aes to indicate per capita gdp, and a size to indicate population size
+Let's add size and colour aesthetics to the points. We can add a colour aes to indicate per capita gdp, and a size to indicate population size
 
 We'll build up from the original code used to generate the plot.
 
 ```{r}
-only_africa %>%
-  filter(country == "Angola" | 
-           country == "Mali" | 
-           country == "Chad" | 
-           country ==  "Senegal" | 
-           country == "Libya") %>%
+africa_vis <- only_africa %>%
   summarise(avgLE = mean(lifeExp),
             avgGDP = mean(gdpPercap),
             avgPOP = mean(pop)) %>% 
   mutate(country = fct_reorder(country, avgLE)) %>% 
   ggplot(aes(x = country, y = avgLE)) +
   geom_point(aes(size = avgGDP, colour = avgPOP)) +
-  scale_color_continuous() +
+  scale_color_gradientn(colours = brewer.pal(3, "Dark2")) +
   ggtitle("Mean life expectancy for African countries") +
   xlab("") +
   ylab("Mean life expectancy in years") +
   theme(axis.text.x = element_text(angle = 90),
           axis.text = element_text(size = 10))
+
+africa_vis
 ```
 
+Although there isn't really any pattern (population and per capita gdp don't appear to be related to life expectancy in these African countries), we are able to glean more information from this plot, without adding more points or lines. Size and colour channels seem to be useful for adding information to plots
 
 
-Writing figures to file
+### Writing figures to file
 
 ```{r}
+#save as a pdf
+ggsave("africa1.pdf", plot = africa_vis, width = 8, height = 4)
 
+#save as a png
+ggsave("africa2.png", plot = africa_vis, width = 8, height = 4)
 ```
 
-Clean up your repo!
+To embed this saved plot image into the Markdown document, use the following Rmd syntax: 
+`![Alt text](/path/to/img.png)`
 
-```{r}
-
-```
-
-But I want to do more!
-
-```{r}
-
-```
-
+![africa2](africa2.png)
